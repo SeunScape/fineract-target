@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(terraform apply:*)",
+      "Bash(terraform destroy:*)",
+      "Bash(terraform import:*)",
+      "Bash(terraform state:*)",
+      "Bash(terraform init -migrate-state:*)",
+      "Bash(aws:*)",
+      "Bash(gh workflow run:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh variable set:*)",
+      "Bash(git push:*)",
+      "Bash(ssh:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./**/*.tfvars)",
+      "Read(./**/*.tfstate)",
+      "Read(./**/*.tfstate.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/credentials)"
+    ]
+  }
+}

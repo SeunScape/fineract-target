@@ -1,0 +1,14 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+.env
+.venv/
+logs/
+backups/
+__pycache__/
+.terraform.lock.hcl.bak
+*.tfplan
+tfplan
+.claude/settings.local.json
