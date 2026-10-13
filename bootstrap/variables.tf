@@ -8,9 +8,19 @@ variable "github_owner" {
   default = "SeunScape"
 }
 
+variable "github_owner_id" {
+  type    = string
+  default = "69199129"
+}
+
 variable "github_repo" {
   type    = string
   default = "fineract-target"
+}
+
+variable "github_repo_id" {
+  type    = string
+  default = "1417222926"
 }
 
 variable "github_environment" {

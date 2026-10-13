@@ -27,9 +27,9 @@ pipeline roles. This file records exactly how it was applied.
 | Public access block | All four settings `true` |
 | Bucket policy | Denies any request where `aws:SecureTransport = false` |
 | OIDC provider | `token.actions.githubusercontent.com`, audience `sts.amazonaws.com` |
-| IAM role `gha-plan` | Trust: `aud = sts.amazonaws.com`, `sub = repo:SeunScape/fineract-target:pull_request` |
+| IAM role `gha-plan` | Trust: `aud = sts.amazonaws.com`, `sub = repo:SeunScape@69199129/fineract-target@1417222926:pull_request` |
 | | AWS managed `ReadOnlyAccess`, plus inline `state-access`: read/write on `target/terraform.tfstate` and its `.tflock`, `kms:Decrypt`/`GenerateDataKey` on the key |
-| IAM role `gha-apply` | Trust: `aud = sts.amazonaws.com`, `sub = repo:SeunScape/fineract-target:environment:aws-target` |
+| IAM role `gha-apply` | Trust: `aud = sts.amazonaws.com`, `sub = repo:SeunScape@69199129/fineract-target@1417222926:environment:aws-target` |
 | | Inline `state-and-key`: target state and lock file, use of the key, `kms:CreateGrant` only for AWS services |
 | | Inline `network-and-vpn`: EC2 VPC, subnet, route table, security group, VGW, customer gateway and VPN connection actions, limited to `eu-west-2` |
 | | Inline `rds-and-secrets`: RDS instance, subnet group and parameter group actions (`eu-west-2`), RDS service-linked role creation, Secrets Manager secrets in this account and region |
@@ -92,6 +92,12 @@ None of these are secrets. The role ARNs and region are stored as GitHub reposit
 | Key rotation | `aws kms get-key-rotation-status --key-id alias/fineract-target` | `true` | |
 | Trust policies | IAM console, both roles | exact repo; `gha-apply` names `aws-target` | |
 | No local state | `ls bootstrap/` | no `terraform.tfstate` | Confirmed |
+
+## Changes since the first apply
+
+| Date | Change | Plan |
+|---|---|---|
+| 2026-10-13 | Trust policies use GitHub's immutable OIDC subject (`owner@<owner id>/repo@<repo id>`). The repo issues this format, so the name-based subject was refused. | 0 to add, 2 to change, 0 to destroy |
 
 ## Changing the bootstrap layer later
 
