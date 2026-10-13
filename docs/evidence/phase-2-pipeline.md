@@ -16,11 +16,6 @@ Account `755431180020`, region `eu-west-2`. Date 2026-10-13.
 | Approval gate | Environment `aws-target`, required reviewer | Approved by `SeunScape` |
 | Apply | Same run, finished 14:48:58Z | `Apply complete! Resources: 0 added, 0 changed, 0 destroyed.` |
 
-## Approval gate
-
-<!-- Screenshot: the deploy run paused at "Waiting for review" on aws-target -->
-![Approval gate](img/phase-2-approval-gate.png)
-
 ## CloudTrail: role assumptions
 
 `AssumeRoleWithWebIdentity`, eu-west-2. The web identity is GitHub's immutable OIDC subject
@@ -32,9 +27,6 @@ Account `755431180020`, region `eu-west-2`. Date 2026-10-13.
 | 14:48:37 | `gha-apply` | `gha-apply-38416176792` | `repo:SeunScape@69199129/fineract-target@1417222926:environment:aws-target` | Success | `cf05f436-befb-4685-aa94-136e3ffdfd46` |
 
 The session name carries the GitHub run ID, so each AWS session traces back to one workflow run.
-
-<!-- Screenshot: CloudTrail event history filtered on AssumeRoleWithWebIdentity -->
-![CloudTrail event history](img/phase-2-cloudtrail.png)
 
 ## Refused assumption (trust policy working)
 
