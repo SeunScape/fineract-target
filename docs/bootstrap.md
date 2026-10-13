@@ -98,6 +98,7 @@ None of these are secrets. The role ARNs and region are stored as GitHub reposit
 | Date | Change | Plan |
 |---|---|---|
 | 2026-10-13 | Trust policies use GitHub's immutable OIDC subject (`owner@<owner id>/repo@<repo id>`). The repo issues this format, so the name-based subject was refused. | 0 to add, 2 to change, 0 to destroy |
+| 2026-10-13 | `gha-apply` may `kms:DescribeKey` the `alias/aws/secretsmanager` key (only that alias). RDS calls it while creating a managed master password; `CreateDBInstance` failed with `KMSKeyNotAccessibleFault` without it. | 0 to add, 1 to change, 0 to destroy |
 
 ## Changing the bootstrap layer later
 
