@@ -180,6 +180,19 @@ data "aws_iam_policy_document" "gha_apply_state" {
     actions   = ["kms:ListAliases"]
     resources = ["*"]
   }
+
+  # RDS describes the Secrets Manager default key while creating a managed master password.
+  statement {
+    sid       = "DescribeSecretsManagerDefaultKey"
+    actions   = ["kms:DescribeKey"]
+    resources = ["arn:${data.aws_partition.current.partition}:kms:${var.region}:${local.account_id}:key/*"]
+
+    condition {
+      test     = "ForAnyValue:StringEquals"
+      variable = "kms:ResourceAliases"
+      values   = ["alias/aws/secretsmanager"]
+    }
+  }
 }
 
 data "aws_iam_policy_document" "gha_apply_network" {
