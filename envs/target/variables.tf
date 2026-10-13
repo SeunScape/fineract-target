@@ -32,3 +32,23 @@ variable "source_public_ip" {
     error_message = "source_public_ip must be an IPv4 address."
   }
 }
+
+variable "vpc_cidr" {
+  type    = string
+  default = "10.20.0.0/16"
+}
+
+variable "private_subnets" {
+  description = "AZ suffix => CIDR."
+  type        = map(string)
+  default = {
+    a = "10.20.1.0/24"
+    b = "10.20.2.0/24"
+  }
+}
+
+variable "bank_lan_cidr" {
+  description = "Bank LAN behind the VPN (Droplet)."
+  type        = string
+  default     = "172.20.0.0/24"
+}
