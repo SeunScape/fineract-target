@@ -13,3 +13,7 @@ output "rds_security_group_id" {
 output "db_subnet_group_name" {
   value = aws_db_subnet_group.main.name
 }
+
+output "rds_endpoint" {
+  value = try(aws_db_instance.main[0].endpoint, null)
+}
