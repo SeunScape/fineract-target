@@ -8,9 +8,11 @@ resource "aws_db_parameter_group" "main" {
   name   = "fineract-target-pg16"
   family = "postgres16"
 
+  # RDS reports this parameter as pending-reboot; matching it avoids a perpetual diff.
   parameter {
-    name  = "rds.force_ssl"
-    value = "1"
+    name         = "rds.force_ssl"
+    value        = "1"
+    apply_method = "pending-reboot"
   }
 }
 
